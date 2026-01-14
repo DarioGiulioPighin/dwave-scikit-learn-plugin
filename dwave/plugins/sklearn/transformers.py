@@ -243,7 +243,6 @@ class SelectFromQuadraticModel(SelectorMixin, BaseEstimator):
         linear = np.zeros(len(feat_corr[0]))
 
         # numpy will automatically go element-by-element in the arrays
-        # Calculate linear coefficients using pure NumPy math first
         linear += -1.0 * label_corr * alpha * num_features
 
         # if must choose exact number of desired features

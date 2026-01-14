@@ -1,14 +1,4 @@
 ---
-prelude: >
-    This release addresses compatibility issues with newer versions of `dwave-optimization`
-    and `numpy`, specifically fixing crashes when using the nonlinear (`nl`) solver
-    in `SelectFromQuadraticModel`.
-features: []
-issues: []
-upgrade: []
-deprecations: []
-critical: []
-security: []
 fixes:
   - |
     Fixed a `TypeError` when using `SelectFromQuadraticModel(solver="nl")` caused by
@@ -19,4 +9,3 @@ fixes:
     during nonlinear model creation. Unnecessary `nl.constant` wrappers were removed
     to ensure linear coefficients and quadratic indices are passed as native NumPy
     arrays, which prevents arithmetic type mismatches and buffer access issues.
-other: []
