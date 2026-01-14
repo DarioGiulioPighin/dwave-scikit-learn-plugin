@@ -1,0 +1,11 @@
+---
+fixes:
+  - |
+    Fixed a `TypeError` when using `SelectFromQuadraticModel(solver="nl")` caused by
+    `numpy.triu` failing on D-Wave `Constant` objects. The upper triangular matrix is now
+    computed using standard NumPy arrays before being converted to optimization symbols.
+  - |
+    Resolved `ValueError: buffer source array is read-only` and other typing errors
+    during nonlinear model creation. Unnecessary `nl.constant` wrappers were removed
+    to ensure linear coefficients and quadratic indices are passed as native NumPy
+    arrays, which prevents arithmetic type mismatches and buffer access issues.

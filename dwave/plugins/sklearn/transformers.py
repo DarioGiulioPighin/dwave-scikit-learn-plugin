@@ -221,11 +221,8 @@ class SelectFromQuadraticModel(SelectorMixin, BaseEstimator):
         # take last element in every row
         label_corr = np.array(correlations[:-1,-1])
 
-        # Make a constant node in order to splice and use in objective
-        nl_corr = nl.constant(feat_corr)
-
         # extract upper triangle, excluding diagonal. Flatten into 1D array
-        C = np.triu(nl_corr, k=1).flatten()
+        C = np.triu(feat_corr, k=1).flatten()
 
         # generate all column and row indices
         quad_col = np.tile(np.arange(total_num_features), total_num_features)
@@ -246,7 +243,7 @@ class SelectFromQuadraticModel(SelectorMixin, BaseEstimator):
         linear = np.zeros(len(feat_corr[0]))
 
         # numpy will automatically go element-by-element in the arrays
-        linear += nl.constant(-1.0 * label_corr * alpha * num_features)
+        linear += -1.0 * label_corr * alpha * num_features
 
         # if must choose exact number of desired features
         if strict:
